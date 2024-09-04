@@ -10,7 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
 //EndPoints - Funcionalidades
-//Configurar a URL e p método/verbo
+//Configurar a URL e p método/verbo HTTP
 app.MapGet("/", () => "Hello World em C#");
 
 app.MapGet("/segundafuncionalidade", () => "sla");
@@ -24,5 +24,10 @@ app.MapGet("/retornarendereco", () =>
     };
     return endereco;
 });
+
+//Criar um funcionalidade para receber informações
+// - Receber informações pela URL da req
+// - Receber informações pelo corpo da req
+//Guardar as informações em uma lista
 
 app.Run();
