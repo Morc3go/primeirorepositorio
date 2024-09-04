@@ -5,24 +5,48 @@
 
 //MINIMAL APIs
 using System.Runtime.InteropServices;
+using API.models;
 
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
 //EndPoints - Funcionalidades
 //Configurar a URL e p método/verbo HTTP
-app.MapGet("/", () => "Hello World em C#");
+app.MapGet("/", () => "API de Produtos");
 
-app.MapGet("/segundafuncionalidade", () => "sla");
-
-app.MapGet("/retornarendereco", () => 
+List<Produto> produtos = new List<Produto>();
+produtos.Add(new Produto()
 {
-    dynamic endereco = new {
-        rua = "Parigot de Souza",
-        numero = 5300,
-        cep = "81290-350"
-    };
-    return endereco;
+    Nome = "Notebook",
+    Preco = 5000,
+    Quantidade = 54
+});
+produtos.Add(new Produto()
+{
+    Nome = "avião",
+    Preco = 50000000,
+    Quantidade = 2
+});
+
+produtos.Add(new Produto()
+{
+    Nome = "PC",
+    Preco = 10000,
+    Quantidade = 60
+});
+
+
+app.MapGet("/produto/listar", () =>
+{
+    return Results.Ok(produtos);
+});
+
+app.MapGet("/produto/cadastrar/{nome}", (string nome) =>
+{
+    Produto produto = new Produto();
+    produto.Nome = nome;
+    produtos.Add(produto);
+    return Results.Ok(produtos);
 });
 
 //Criar um funcionalidade para receber informações
@@ -31,3 +55,15 @@ app.MapGet("/retornarendereco", () =>
 //Guardar as informações em uma lista
 
 app.Run();
+
+//C# - Utilização dos gets e sets
+//Produto produto = new Produto();]
+//produto.Preco = 5;
+//Console.WriteLine(produto.Preco);
+
+
+//Java - Utilização dos gets e sets
+//Produto produto = new Produto();
+//produto.SetPreco(5);
+//Console.WriteLine("Preço: " + produto.GetPreco());
+

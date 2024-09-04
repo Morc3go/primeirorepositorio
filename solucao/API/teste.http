@@ -1,8 +1,10 @@
 ### testar a primeira funcionalidade
 GET http://localhost:5156
 
-### testar a segunda funcionalidade
-GET http://localhost:5156/segundafuncionalidade
+### Retornar produtos
 
-### retornar endereço
-GET http://localhost:5156/retornarendereco
+Get http://localhost:5156/produto/listar
+
+### cadastrar
+
+POST  http://localhost:5156/produto/cadastrar/agua
